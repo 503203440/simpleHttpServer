@@ -5,6 +5,7 @@ import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
+import javax.servlet.FilterConfig;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -14,11 +15,22 @@ import java.io.IOException;
 //@Order(0)//控制加载和执行顺序
 //@Component
 public class CharacterEncoderFilter implements Filter {
+
+    @Override
+    public void init(FilterConfig filterConfig) throws ServletException {
+
+    }
+
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         request.setCharacterEncoding("GBK");
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;
         log.info("请求匹配过滤器：{}", httpServletRequest.getRequestURI());
         chain.doFilter(request, response);
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }
