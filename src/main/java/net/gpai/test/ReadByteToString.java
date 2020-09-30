@@ -1,4 +1,6 @@
-package net.gpai;
+package net.gpai.test;
+
+import net.gpai.util.FileUtil;
 
 import java.io.File;
 import java.nio.charset.Charset;
@@ -8,7 +10,7 @@ public class ReadByteToString {
     public static void main(String[] args) {
 
 //        File file = new File("C:\\Users\\YX\\IdeaProjects\\msgConvert\\byteFile.txt");
-        File file = new File("C:\\Users\\YX\\IdeaProjects\\msgConvert\\byteFile.txt");
+        File file = new File("C:\\Users\\YX\\IdeaProjects\\simpleHttpServer\\byteFile.txt");
 
         String context = FileUtil.readFile(file, "UTF-8");
 

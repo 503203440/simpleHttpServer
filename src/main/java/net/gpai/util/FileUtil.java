@@ -1,4 +1,4 @@
-package net.gpai;
+package net.gpai.util;
 
 
 import org.slf4j.Logger;

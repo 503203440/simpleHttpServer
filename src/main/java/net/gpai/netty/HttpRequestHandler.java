@@ -12,7 +12,7 @@ import io.netty.handler.codec.http.multipart.InterfaceHttpData;
 import io.netty.handler.codec.http.multipart.MemoryAttribute;
 import io.netty.util.CharsetUtil;
 import lombok.extern.slf4j.Slf4j;
-import net.gpai.FileUtil;
+import net.gpai.util.FileUtil;
 
 import java.io.File;
 import java.util.HashMap;
@@ -61,7 +61,13 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         }
 
         Map<String, Object> requestParams = getRequestParams(req);
-        log.info("requestParams:{}", requestParams);
+        if (!requestParams.isEmpty()) {
+            log.info("requestParams:{}", requestParams);
+            String byteFile = projectPath + "/requestParam.txt";
+            File file = new File(byteFile);
+            if (!file.exists()) file.createNewFile();
+            FileUtil.writeString(file, requestParams.toString());
+        }
 
         //100 Continue
         if (HttpUtil.is100ContinueExpected(req)) {
